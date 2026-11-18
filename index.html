@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VastraSetu | Give Clothes a Second Life</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Vastra<span>Setu</span> ♻</div>
+
+  <button id="menuBtn" class="secondary" onclick="toggleMenu()">☰</button>
+
+  <nav id="nav">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#donate" onclick="closeMenu()">Donate Clothes</a>
+    <a href="#ngos" onclick="closeMenu()">NGOs</a>
+    <a href="#tracking" onclick="closeMenu()">Track Donation</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+
+<div class="hero" id="home">
+  <div class="hero-content">
+    <div class="tag">♻ SUSTAINABLE FUTURE, ONE DONATION AT A TIME</div>
+
+    <h1>Give Your Clothes <span>A Second Life.</span></h1>
+
+    <p>
+      Your unused clothes can bring happiness to someone.
+      Donate responsibly, connect with NGOs and help us
+      build a world where nothing goes to waste.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="primary" onclick="goTo('donate')">
+        Donate Clothes →
+      </button>
+
+      <button class="secondary" onclick="goTo('about')">
+        Learn More
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-art">👕🌱</div>
+</div>
+
+<!-- ABOUT -->
+
+<section id="about">
+  <div class="section-title">
+    <h2>How VastraSetu Works</h2>
+    <p>Making clothing donations simple, transparent and meaningful.</p>
+  </div>
+
+  <div class="features">
+    <div class="card">
+      <div class="emoji">👚</div>
+      <h3>1. Donate</h3>
+      <p>Submit your unused clothes through our simple donation form.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🤝</div>
+      <h3>2. Connect</h3>
+      <p>Find suitable NGOs that can receive your clothing donations.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">📦</div>
+      <h3>3. Collect</h3>
+      <p>Coordinate donation collection with the selected NGO.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">❤️</div>
+      <h3>4. Make Impact</h3>
+      <p>Help clothing reach people who need it and reduce textile waste.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DONATION FORM -->
+
+<section class="donation-section" id="donate">
+  <div class="section-title">
+    <h2>Donate Your Clothes</h2>
+    <p>Every piece of clothing can make a difference.</p>
+  </div>
+
+  <div class="form-container">
+    <form id="donationForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label for="donor">Donor Name</label>
+          <input id="donor" required placeholder="Enter your name">
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input id="phone" type="tel" pattern="[0-9]{10}"
+            maxlength="10" required placeholder="10-digit number">
+        </div>
+
+        <div class="field">
+          <label for="category">Clothing Category</label>
+          <select id="category" required>
+            <option value="">Select category</option>
+            <option>Men's Clothing</option>
+            <option>Women's Clothing</option>
+            <option>Children's Clothing</option>
+            <option>Winter Wear</option>
+            <option>Mixed Clothing</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="quantity">Quantity (Pieces)</label>
+          <input id="quantity" type="number" min="1" max="1000"
+            required placeholder="Example: 10">
+        </div>
+
+        <div class="field">
+          <label for="condition">Clothing Condition</label>
+          <select id="condition" required>
+            <option value="">Select condition</option>
+            <option>New</option>
+            <option>Good - Reusable</option>
+            <option>Needs Recycling</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="location">Location</label>
+          <input id="location" value="Nagpur, Maharashtra" required>
+        </div>
+
+        <div class="field full">
+          <label for="collection">Collection Preference</label>
+          <select id="collection" required>
+            <option value="">Select preference</option>
+            <option>NGO Pickup</option>
+            <option>Self Drop-off</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="address">Full Address / Notes</label>
+          <textarea id="address" rows="3"
+            placeholder="Enter address or additional information"></textarea>
+        </div>
+
+      </div>
+
+      <button class="primary" type="submit">
+        Submit Donation →
+      </button>
+
+    </form>
+
+    <div class="result" id="formResult"></div>
+  </div>
+</section>
+
+<!-- NGO MATCHING -->
+
+<section id="ngos">
+  <div class="section-title">
+    <h2>Recommended NGO Matches</h2>
+    <p>Explore the demo NGO partners available in Nagpur.</p>
+  </div>
+
+  <div class="ngo-list" id="ngoList"></div>
+</section>
+
+<!-- DASHBOARD -->
+
+<section class="dashboard" id="dashboard">
+  <div class="section-title">
+    <h2>Donation Dashboard</h2>
+    <p>Track the donations submitted through this browser.</p>
+  </div>
+
+  <div class="stats">
+    <div class="card">
+      <h3>Total Donations</h3>
+      <div class="stat-number" id="totalDonations">0</div>
+      <p>Submitted donations</p>
+    </div>
+
+    <div class="card">
+      <h3>Clothes Donated</h3>
+      <div class="stat-number" id="totalClothes">0</div>
+      <p>Total clothing pieces</p>
+    </div>
+
+    <div class="card">
+      <h3>Accepted</h3>
+      <div class="stat-number" id="acceptedCount">0</div>
+      <p>Demo NGO acceptances</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKING -->
+
+<section id="tracking">
+  <div class="section-title">
+    <h2>Track Your Donation</h2>
+    <p>Follow your donation journey.</p>
+  </div>
+
+  <div class="tracking-list" id="trackingList">
+    <div class="card">
+      No donations submitted yet. Start by donating clothes!
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h2>VastraSetu ♻</h2>
+  <p>Give Your Clothes a Second Life.</p>
+  <p>Connecting donors, NGOs and communities.</p>
+  <p>© 2026 VastraSetu | Hackathon Project</p>
+</footer>
+<script src="script.js"></script>
+
+</body>
+</html>
